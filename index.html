@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aman Sharma · AI Engineer</title>
+<meta name="description" content="Aman Sharma, AI Engineer at MeitY, Government of India. Production LLM, RAG and computer vision systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single reading column; each shipped system is a spec sheet with its input → model → output pipeline */
+:root{
+  --bg:#F2F4F3;
+  --surface:#FFFFFF;
+  --ink:#14211F;
+  --muted:#58676A;
+  --line:#D5DCDA;
+  --accent:#0B6E68;
+  --accent-soft:#DCEDEA;
+  --display:"Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --body:"IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1615; --surface:#162120; --ink:#E6ECEA; --muted:#97A6A3;
+    --line:#2A3836; --accent:#4FC2B7; --accent-soft:#18322F; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1615; --surface:#162120; --ink:#E6ECEA; --muted:#97A6A3;
+  --line:#2A3836; --accent:#4FC2B7; --accent-soft:#18322F; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6}
+.wrap{max-width:880px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:56px 72px;display:flex;flex-direction:column;gap:72px}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* Hero */
+.hero{display:flex;flex-direction:column;gap:20px}
+.status{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:13px;color:var(--accent);background:var(--accent-soft);padding:6px 12px;border-radius:999px;align-self:flex-start}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.hero h1{font-size:clamp(44px,8vw,76px);font-weight:700;line-height:1;letter-spacing:-.025em}
+.hero .role{font-family:var(--display);font-weight:500;font-size:clamp(20px,3vw,26px);color:var(--muted);line-height:1.3}
+.hero p{max-width:62ch;margin:0;font-size:18px}
+.contact{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.chip{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:14px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 14px;text-decoration:none;cursor:pointer}
+.chip:hover{border-color:var(--accent)}
+.chip.primary{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.chip small{font-size:11px;color:var(--muted)}
+.chip.primary small{color:inherit;opacity:.8}
+
+/* Section heads */
+section{display:flex;flex-direction:column;gap:24px}
+.head{display:flex;flex-direction:column;gap:6px}
+.head h2{font-size:clamp(28px,4vw,36px);font-weight:700;letter-spacing:-.015em}
+.head p{margin:0;color:var(--muted);max-width:62ch}
+
+/* Systems */
+.systems{display:flex;flex-direction:column;gap:16px}
+.sys{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:14px}
+.sys-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sys h3{font-size:22px;font-weight:700;letter-spacing:-.01em}
+.sys .for{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.sys p{margin:0;max-width:66ch}
+.pipe{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:stretch;gap:8px;font-family:var(--mono);font-size:13px}
+.pipe div{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;min-width:0;display:flex;flex-direction:column;gap:2px}
+.pipe div b{font-weight:500;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.pipe div.model{border-color:var(--accent);background:var(--accent-soft)}
+.pipe span{align-self:center;color:var(--accent)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-family:var(--mono);font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:2px 8px}
+
+/* Stack */
+.stack{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.stack div{border-top:2px solid var(--ink);padding-top:10px;display:flex;flex-direction:column;gap:4px}
+.stack div b{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* Services */
+.services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.svc{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:8px;text-decoration:none;color:var(--ink)}
+.svc:hover{border-color:var(--accent)}
+.svc h3{font-size:18px;font-weight:700}
+.svc p{margin:0;color:var(--muted);font-size:15px}
+.svc .price{font-family:var(--mono);font-size:13px;color:var(--accent);margin-top:auto;font-variant-numeric:tabular-nums}
+
+/* Timeline */
+.rows{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:170px 1fr;gap:16px;padding-block:16px;border-bottom:1px solid var(--line)}
+.row .when{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.row h3{font-size:18px;font-weight:700}
+.row p{margin:4px 0 0;color:var(--muted)}
+
+footer{display:flex;flex-direction:column;gap:14px;padding-top:28px;border-top:2px solid var(--ink)}
+footer h2{font-size:clamp(26px,4vw,34px)}
+.toast{font-family:var(--mono);font-size:13px;color:var(--accent);min-height:1.4em}
+
+@media (max-width:640px){
+  .wrap{padding-block:36px 56px;gap:56px}
+  .pipe{grid-template-columns:1fr}
+  .pipe span{transform:rotate(90deg);justify-self:center}
+  .services{grid-template-columns:1fr}
+  .row{grid-template-columns:1fr;gap:4px}
+  .sys{padding:18px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .chip,.svc{transition:border-color .15s ease}
+}
+</style>
+<style>body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <span class="status"><i></i>Open to AI engineering roles · Delhi NCR or remote</span>
+    <h1>Aman Sharma</h1>
+    <div class="role">AI Engineer at the Ministry of Electronics &amp; IT, Government of India</div>
+    <p>I build production AI systems: LLM applications, RAG pipelines and computer vision, taken from prototype to a reliable API that real users depend on. Four systems I built are running in government today.</p>
+    <div class="contact">
+      <button class="chip primary" type="button" id="copy-email" data-copy="aman49420@gmail.com">aman49420@gmail.com <small>copy</small></button>
+      <button class="chip" type="button" id="copy-phone" data-copy="+91 98715 93676">+91 98715 93676 <small>copy</small></button>
+      <a class="chip" href="https://www.linkedin.com/in/amansharmavb" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="chip" href="https://contra.com/aman_sharma_42knwv48" target="_blank" rel="noopener">Contra ↗</a>
+    </div>
+    <div class="toast" id="toast" aria-live="polite"></div>
+  </header>
+
+  <section id="work">
+    <div class="head">
+      <span class="label">Selected work · MeitY, 2025 – present</span>
+      <h2>Systems in production</h2>
+      <p>Each one built end to end: data in, model in the middle, something a decision-maker uses at the other end.</p>
+    </div>
+    <div class="systems">
+
+      <article class="sys">
+        <div class="sys-top"><h3>Deepfake &amp; AI-content detection</h3><span class="for">for MeitY</span></div>
+        <p>Identifies synthetic and AI-generated media by combining open-source LLMs, classification models and metadata extraction into one verdict.</p>
+        <div class="pipe">
+          <div><b>Input</b>Images, video, text</div><span>→</span>
+          <div class="model"><b>Models</b>LLMs + classifiers + metadata</div><span>→</span>
+          <div><b>Output</b>Authenticity verdict</div>
+        </div>
+        <div class="tags"><span>Python</span><span>PyTorch</span><span>Open-source LLMs</span><span>FastAPI</span></div>
+      </article>
+
+      <article class="sys">
+        <div class="sys-top"><h3>Railway land encroachment detection</h3><span class="for">for Ministry of Railways</span></div>
+        <p>A computer vision and geospatial pipeline that scans satellite imagery and flags encroachment on railway land.</p>
+        <div class="pipe">
+          <div><b>Input</b>Satellite imagery</div><span>→</span>
+          <div class="model"><b>Model</b>Computer vision pipeline</div><span>→</span>
+          <div><b>Output</b>Flagged land parcels</div>
+        </div>
+        <div class="tags"><span>Computer vision</span><span>Geospatial</span><span>PyTorch</span><span>Docker</span></div>
+      </article>
+
+      <article class="sys">
+        <div class="sys-top"><h3>National MeitY policy dashboard</h3><span class="for">for central government leadership</span></div>
+        <p>A single-view BI dashboard that aggregates policy data from multiple sources, so leadership reads one screen instead of many reports.</p>
+        <div class="pipe">
+          <div><b>Input</b>Multi-source policy data</div><span>→</span>
+          <div class="model"><b>Layer</b>Aggregation + API</div><span>→</span>
+          <div><b>Output</b>One dashboard view</div>
+        </div>
+        <div class="tags"><span>Python</span><span>FastAPI</span><span>React</span></div>
+      </article>
+
+      <article class="sys">
+        <div class="sys-top"><h3>AI SaaS for social media analysis</h3><span class="for">sole builder</span></div>
+        <p>Tracks content automatically, analyses it at profile and post level, scores sentiment, surfaces trends, and produces a stakeholder-ready report in one click.</p>
+        <div class="pipe">
+          <div><b>Input</b>Profiles and posts</div><span>→</span>
+          <div class="model"><b>Models</b>LangChain, RAG, sentiment</div><span>→</span>
+          <div><b>Output</b>One-click report</div>
+        </div>
+        <div class="tags"><span>LangChain</span><span>Vector search</span><span>FastAPI</span><span>React</span><span>Docker</span></div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="head">
+      <span class="label">Toolkit</span>
+      <h2>What I build with</h2>
+    </div>
+    <div class="stack">
+      <div><b>LLM &amp; retrieval</b>LangChain, RAG, vector search, prompt design</div>
+      <div><b>Models</b>PyTorch, computer vision, NLP, classification</div>
+      <div><b>Backend</b>Python, FastAPI, REST APIs</div>
+      <div><b>Frontend</b>React</div>
+      <div><b>Ops</b>Docker, AWS, Git, Linux</div>
+      <div><b>Automation</b>n8n workflows</div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="head">
+      <span class="label">Freelance</span>
+      <h2>Work with me</h2>
+      <p>Fixed-scope projects, booked through Contra.</p>
+    </div>
+    <div class="services">
+      <a class="svc" href="https://contra.com/s/LeURmP6Z-rag-chatbot-over-your-own-documents" target="_blank" rel="noopener">
+        <h3>RAG chatbot over your documents</h3>
+        <p>Cited answers from your contracts, policies, manuals or tickets.</p>
+        <span class="price">from $800 · 2 weeks ↗</span>
+      </a>
+      <a class="svc" href="https://contra.com/s/oAvEWZOE-llm-workflow-automation-for-your-business" target="_blank" rel="noopener">
+        <h3>LLM workflow automation</h3>
+        <p>Inbox triage, document intake and report drafts, with a person approving what matters.</p>
+        <span class="price">from $600 · 10 days ↗</span>
+      </a>
+      <a class="svc" href="https://contra.com/s/BlqPvrOk-add-an-ai-feature-to-your-existing-product" target="_blank" rel="noopener">
+        <h3>AI feature for your product</h3>
+        <p>Smart search, summaries or an assistant, built behind your existing API.</p>
+        <span class="price">from $1,000 · 3 weeks ↗</span>
+      </a>
+      <a class="svc" href="https://contra.com/s/PqkrbEQq-business-website-built-and-live-in-7-days" target="_blank" rel="noopener">
+        <h3>Business website in 7 days</h3>
+        <p>Mobile-first site with services, timings, map and a WhatsApp enquiry button.</p>
+        <span class="price">$150 · 7 days ↗</span>
+      </a>
+    </div>
+  </section>
+
+  <section id="background">
+    <div class="head">
+      <span class="label">Background</span>
+      <h2>Experience &amp; education</h2>
+    </div>
+    <div class="rows">
+      <div class="row">
+        <span class="when">Jul 2025 – present</span>
+        <div><h3>AI Engineer, Ministry of Electronics &amp; IT</h3><p>Office of the Hon'ble Minister for Electronics &amp; IT, New Delhi. Designing, building and deploying production AI systems.</p></div>
+      </div>
+      <div class="row">
+        <span class="when">2017 – 2021</span>
+        <div><h3>B.Tech, Information Technology</h3><p>Noida International University</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="label">Contact</span>
+    <h2>Hiring for AI, or need something built?</h2>
+    <div class="contact">
+      <button class="chip primary" type="button" id="copy-email-2" data-copy="aman49420@gmail.com">aman49420@gmail.com <small>copy</small></button>
+      <button class="chip" type="button" id="copy-phone-2" data-copy="+91 98715 93676">+91 98715 93676 <small>copy</small></button>
+      <a class="chip" href="https://www.linkedin.com/in/amansharmavb" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+    <div class="toast" id="toast-2" aria-live="polite"></div>
+  </footer>
+
+</div>
+
+<script>
+document.querySelectorAll('[data-copy]').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var text = btn.getAttribute('data-copy');
+    var toast = btn.closest('header, footer').querySelector('.toast');
+    function done(msg){ if(toast){ toast.textContent = msg; setTimeout(function(){ toast.textContent=''; }, 2500); } }
+    try{
+      navigator.clipboard.writeText(text).then(function(){ done('Copied ' + text); }, function(){ done(text); });
+    }catch(e){ done(text); }
+  });
+});
+</script>
+</body>
+</html>
